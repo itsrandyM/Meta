@@ -7,6 +7,11 @@ const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const corsOptions = require('./config/corsOptions')
 const PORT = process.env.PORT || 4000
+const dotenv = dotenv = require('dotenv')
+
+
+
+dotenv.config()
 
 app.use(logger)
 
