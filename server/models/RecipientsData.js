@@ -1,10 +1,10 @@
 const  mongoose = require ("mongoose")
-const User = require("./User")
+const Recipient = require("./Recipients")
 
-const recipientSchema = new mongoose.Schema({
-    User: {
+const recipientDataSchema = new mongoose.Schema({
+    recipient: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: User
+        ref: Recipient
     },
     name: {
         type:String
@@ -17,4 +17,4 @@ const recipientSchema = new mongoose.Schema({
     }
     
 })
-module.exports = mongoose.model('Recipient', recipientSchema)
+module.exports = mongoose.model('RecipientData', recipientDataSchema)
