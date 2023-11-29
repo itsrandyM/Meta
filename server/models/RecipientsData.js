@@ -1,5 +1,10 @@
 const  mongoose = require ("mongoose")
 const Recipient = require("./Recipients")
+const Token = require("./Token")
+const Description = require("./Description")
+const Classification = require("./Classification")
+
+
 
 const recipientDataSchema = new mongoose.Schema({
     recipient: {
@@ -9,12 +14,22 @@ const recipientDataSchema = new mongoose.Schema({
     name: {
         type:String
     },
-    email:{
-        type:String
+    token:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: Token
     },
-    walletAddress:{
-        type: String
-    }
+    description:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: Description
+    },
+    classification:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: Classification
+    },
+    verified: {
+        type: Boolean,
+        default: false, 
+      }
     
 })
 module.exports = mongoose.model('RecipientData', recipientDataSchema)
