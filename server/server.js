@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const path = require('path')
@@ -6,8 +7,9 @@ const errorHandler = require('./middleware/errorHandler')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const corsOptions = require('./config/corsOptions')
+const { default: mongoose } = require('mongoose')
 const PORT = process.env.PORT || 4000
-const dotenv = dotenv = require('dotenv')
+
 
 
 
@@ -37,5 +39,26 @@ app.all('*', (req, res) => {
 })
 
 app.use(errorHandler)
+
+//db connection
+mongoose.connect(process.env.MONGO_URI,{
+    UseNewUrlParser: true,
+    UseUnifiedTopology: true,
+})
+.then (() => {
+    app.listen(process.env.PORT, () => {
+        console.log('Server listening to port', process.env.PORT})
+    })
+.catch((err) => {
+    console.error('Error connecting to database:', err.message)
+    process.exit(1)
+})
+
+
+
+}
+  
+
+    )
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
