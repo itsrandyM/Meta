@@ -13,7 +13,6 @@ const PORT = process.env.PORT || 4000
 
 
 
-dotenv.config()
 
 app.use(logger)
 
@@ -42,13 +41,14 @@ app.use(errorHandler)
 
 //db connection
 mongoose.connect(process.env.MONGO_URI,{
-    UseNewUrlParser: true,
-    UseUnifiedTopology: true,
+  //  UseNewUrlParser: true,
+    //UseUnifiedTopology: true,
 })
-.then (() => {
+.then(() => {
     app.listen(process.env.PORT, () => {
-        console.log('Server listening to port', process.env.PORT})
+        console.log('Server listening to port', process.env.PORT)
     })
+})
 .catch((err) => {
     console.error('Error connecting to database:', err.message)
     process.exit(1)
@@ -56,9 +56,5 @@ mongoose.connect(process.env.MONGO_URI,{
 
 
 
-}
-  
 
-    )
-
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+//app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
